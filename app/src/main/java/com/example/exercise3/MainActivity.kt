@@ -14,48 +14,56 @@ class MainActivity : AppCompatActivity() {
         buttonCalculate.setOnClickListener{
             calculate()
         }
+
+        buttonReset.setOnClickListener{
+            spinnerAge.setSelection(0)
+            radioGroupGender.clearCheck()
+            checkBoxSmoker.isChecked = false
+            textViewPremium.text = "Insurance Premium:"
+        }
     }
 
     fun calculate() {
         val age = spinnerAge.selectedItemPosition.toString().toInt()
         val male = radioButtonMale.isChecked
 
+
         val smoker = checkBoxSmoker.isChecked
         var insurance = 0
 
         when (age) {
-            1 -> {
-                insurance += 60
+            0 -> {
+                insurance = 60
             }
-            2 -> {
+            1 -> {
                 insurance = 70
                 if (male)
                     insurance += 50
                 if (smoker)
                     insurance += 100
             }
-            3 -> {
+            2 -> {
                 insurance = 90
                 if (male)
                     insurance += 100
                 if (smoker)
                     insurance += 150
             }
-            4 -> {
+            3 -> {
                 insurance = 120
                 if (male)
                     insurance += 150
                 if (smoker)
                     insurance += 200
             }
-            5 -> {
+            4 -> {
                 insurance = 150
                 if (male)
                     insurance += 200
                 if (smoker)
                     insurance += 250
             }
-            6 -> {
+            5 -> {
                 insurance = 150
                 if (male)
                     insurance += 200
@@ -63,5 +71,8 @@ class MainActivity : AppCompatActivity() {
                     insurance += 300
             }
         }
+        textViewPremium.text = "Insurance Premium:" + insurance.toString()
     }
+
+
 }
